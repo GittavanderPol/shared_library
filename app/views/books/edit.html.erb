@@ -1,0 +1,7 @@
+<h1>Edit the book here</h1>
+
+<%= form_with model: @book do |form| %>
+  <%= render "shared/text_field", field: :author, label: "Author", form: form %>
+  <%= render "shared/text_field", field: :title, label: "Title", form: form %>
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>
