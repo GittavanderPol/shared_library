@@ -1,6 +1,8 @@
 class Book < ApplicationRecord
   include PgSearch::Model
 
+  belongs_to :owner, class_name: "User"
+
   validates :title, presence: true
   validates :author, presence: true
 
