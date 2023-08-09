@@ -75,3 +75,5 @@ group :test do
 
   gem 'shoulda'
 end
+
+gem 'pg_search'

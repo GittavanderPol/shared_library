@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Book.create([
-  { title: "Wool", author: "Hugh Howey"},
-  { title: "Oorsprong", author: "Dan Brown"},
-  { title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling"},
+  { title: "Wool", author: "Hugh Howey" },
+  { title: "Oorsprong", author: "Dan Brown" },
+  { title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling" },
 ])

@@ -1,5 +1,12 @@
 <h1>All books</h1>
 
+<%= form_with url: books_path, method: :get, html: { role: "search" } do |form| %>
+  <div class="input-group w-25">
+    <%= form.text_field :query, value: @query, type: "search", placeholder: "Search", class: "form-control" %>
+    <%= form.submit "Search", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
 <table class="table table-striped">
   <thead>
     <tr>

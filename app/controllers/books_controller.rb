@@ -2,7 +2,9 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def index
-    @books = Book.all
+    @query = params[:query]
+    @books = Book.order(:title)
+    @books = @books.search_by_title_and_author(@query) if @query.present?
   end
 
   def new
