@@ -1,6 +1,12 @@
 require "test_helper"
 
 class BooksControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
+  def setup
+    sign_in users(:gitta)
+  end
+
   test "lists books" do
     get books_path
 
