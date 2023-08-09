@@ -7,7 +7,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", "All books"
     assert_select "table > tbody > tr", count: Book.count
 
-    Book.take(3).each_with_index do |book, index|
+    Book.order(:title).take(3).each_with_index do |book, index|
       assert_select "tr:nth-child(#{index + 1}) td", book.title
     end
   end
@@ -20,7 +20,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     new_book = Book.last
     assert_equal "Some title", new_book.title
-    assert_select "tr:last-child td", "Some title"
+    assert_includes response.body, "Some title"
   end
 
   test "fails creating a new book" do
@@ -70,5 +70,12 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert redirect_to books_path
     follow_redirect!
     assert_select "tbody tr", count: Book.count
+  end
+
+  test "searches for a specific title" do
+    @book = books(:wool)
+    get books_path, params: { query: "Wool" }
+    assert_select "table > tbody > tr", count: 1
+    assert_select "td", @book.title
   end
 end
