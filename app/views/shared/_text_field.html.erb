@@ -1,0 +1,19 @@
+<% errors = form.object.errors[field] %>
+<% has_errors = !errors.empty? %>
+<% field_class = "form-control" %>
+<% field_class += " is-invalid" if has_errors %>
+
+<div class="mb-3">
+  <%= form.label field, label, class: "form-label" %>
+  <%= form.text_field field, class: field_class %>
+
+  <% if has_errors %>
+    <div class="text-danger">
+      <ul>
+        <% errors.each do |error| %>
+          <li><%= error.capitalize %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

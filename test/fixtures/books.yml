@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+wool:
+  title: Wool
+  author: Hugh Howey
+
+oorsprong:
+  title: Oorsprong
+  author: Dan Brown
+
+harry_potter:
+  title: Harry Potter and the Philosopher’s Stone
+  author: J.K. Rowling
