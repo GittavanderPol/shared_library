@@ -1,4 +1,5 @@
 <%= form_with model: book do |form| %>
+  <%= render "shared/form_errors", form: form, exclude: [:author, :title] %>
   <%= render "shared/text_field", field: :author, label: "Author", form: form %>
   <%= render "shared/text_field", field: :title, label: "Title", form: form %>
   <%= form.submit class: "btn btn-primary" %>

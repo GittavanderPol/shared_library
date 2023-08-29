@@ -1,0 +1,16 @@
+<% error_keys = form.object.errors.attribute_names - (exclude || []) %>
+<% if error_keys.any? %>
+  <div class="alert alert-danger my-4" role="alert">
+    <b>
+      You have <%= pluralize(error_keys.count, "error") %>:
+    </b>
+    <ul class="mb-0">
+      <% error_keys.each do |key| %>
+        <% messages = form.object.errors.full_messages_for(key) %>
+        <% messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary my-4">
+  <div class="container-fluid">
+    <%= link_to "BookShare", books_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+              <%= active_link_to "Books", books_path, class: "nav-link", aria_current: "page" %>
+          </li>
+          <li class="nav-item">
+              <%= active_link_to "Friends", users_path, class: "nav-link", aria_current: "page" %>
+          </li>
+        <% end %>
+      </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to connections_path, class: "nav-link position-relative p-0", aria_current: "page" do %>
+              <i class="bi bi-people" style="font-size: 24px;"></i>
+              <% if connections_to_accept? %>
+                <span class="mt-1 position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  <%= request_count %>
+                </span>
+              <% end %>
+            <% end %>
+          </li>
+          <div class="vr ms-4 me-2"></div>
+           <div class="btn-group">
+            <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.name %>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to "My profile", user_path(current_user), class: "nav-link", aria_current: "page" %>
+              </li>
+              <li>
+                <%= link_to "Settings", edit_user_registration_path, class: "nav-link", aria_current: "page" %>
+              </li>
+              <li class="nav-item">
+                <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link", aria_current: "page" %>
+              </li>
+            </ul>
+          </div>
+        <% else %>
+          <li class="nav-item">
+              <%= link_to "Sign in", new_user_session_path, class: "nav-link", aria_current: "page" %>
+          </li>
+          <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path, class: "nav-link", aria_current: "page" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

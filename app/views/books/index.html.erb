@@ -1,25 +1,50 @@
 <h1>All books</h1>
 
-<%= form_with url: books_path, method: :get, html: { role: "search" } do |form| %>
-  <div class="input-group w-25">
-    <%= form.text_field :query, value: @query, type: "search", placeholder: "Search", class: "form-control" %>
-    <%= form.submit "Search", class: "btn btn-primary" %>
+<div class="row my-2">
+  <div class="col my-2">
+    <%= form_with url: books_path, method: :get, html: { role: "search" } do |form| %>
+      <div class="input-group">
+        <%= form.text_field :query, value: @query, type: "search", placeholder: "Search", class: "form-control" %>
+        <%= form.submit "Search", class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+
+  <div class="col-lg-8 my-2 d-grid gap-2 d-md-flex justify-content-md-end">
+    <%= link_to new_book_path, class: "btn btn-primary" do %>
+      <i class="bi bi-plus"></i> Add book
+    <% end %>
+  </div>
+</div>
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Author</th>
       <th scope="col">Title</th>
+      <th scope="col">Owner</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-      <% @books.each do |book| %>
-        <tr>
-          <td><%= link_to book.author, book %></td>
-          <td><%= link_to book.title, book %></td>
-        </tr>
-      <% end %>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.author %></td>
+        <td><%= book.title %></td>
+        <td><%= link_to book.owner.name, user_path(book.owner) %></td>
+        <% if book.owner_is?(current_user) %>
+          <td>
+            <%= link_to book_path(book), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-xs float-end" do %>
+              <i class="bi bi-trash3"></i> Delete
+            <% end %>
+            <%= link_to edit_book_path(book), class: "btn btn-outline-primary btn-xs float-end me-1" do %>
+              <i class="bi bi-pencil"></i> Edit
+            <% end %>
+          </td>
+        <% else %>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
   </tbody>
 </table>

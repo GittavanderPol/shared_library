@@ -9,12 +9,23 @@
 confirmed_at = Time.current - 1.hour
 confirmation_sent_at = Time.current - 2.hours
 
-gitta, calvin = User.create([
-  { email: "gitta@mail.com", password: "password", confirmed_at: confirmed_at, confirmation_sent_at: confirmation_sent_at },
-  { email: "calvin@mail.com", password: "pommes", confirmed_at: confirmed_at, confirmation_sent_at: confirmation_sent_at },
+gitta, calvin, jannie, helen = User.create!([
+  { name: "Gitta", email: "gitta@mail.com", password: "password", confirmed_at: confirmed_at, confirmation_sent_at: confirmation_sent_at },
+  { name: "Calvin", email: "calvin@mail.com", password: "pommes", confirmed_at: confirmed_at, confirmation_sent_at: confirmation_sent_at },
+  { name: "Jannie", email: "jannie@mail.com", password: "password", confirmed_at: confirmed_at, confirmation_sent_at: confirmation_sent_at },
+  { name: "Helen", email: "helen@mail.com", password: "password", confirmed_at: confirmed_at, confirmation_sent_at: confirmation_sent_at },
 ])
 
-Book.create([
+Connection.create!([
+  { sender: gitta, recipient: calvin, connection_status: "connected" },
+  { sender: gitta, recipient: jannie, connection_status: "connected" },
+  { sender: gitta, recipient: helen, connection_status: "requested" },
+  { sender: calvin, recipient: jannie, connection_status: "connected" },
+  { sender: calvin, recipient: helen, connection_status: "requested" },
+  { sender: jannie, recipient: helen, connection_status: "connected" },
+])
+
+Book.create!([
   { title: "Wool", author: "Hugh Howey", owner: calvin },
   { title: "Wool", author: "Hugh Howey", owner: gitta },
   { title: "Oorsprong", author: "Dan Brown", owner: gitta },

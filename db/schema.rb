@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_09_194901) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_22_084118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_194901) do
     t.datetime "updated_at", null: false
     t.bigint "owner_id"
     t.index ["owner_id"], name: "index_books_on_owner_id"
+  end
+
+  create_table "connections", force: :cascade do |t|
+    t.bigint "sender_id"
+    t.bigint "recipient_id"
+    t.string "connection_status", default: "requested", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_id"], name: "index_connections_on_recipient_id"
+    t.index ["sender_id", "recipient_id"], name: "index_connections_on_sender_id_and_recipient_id", unique: true
+    t.index ["sender_id"], name: "index_connections_on_sender_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,10 +46,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_194901) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "books", "users", column: "owner_id"
+  add_foreign_key "connections", "users", column: "recipient_id"
+  add_foreign_key "connections", "users", column: "sender_id"
 end

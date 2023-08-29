@@ -1,0 +1,44 @@
+<h1>Friend requests</h1>
+
+<%= render "shared/friends_header" %>
+
+<h3>Incoming friend requests</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @connections_to_accept.each do |connection| %>
+      <tr>
+        <td><%= connection.sender.name %></td>
+        <td>
+          <%= button_to "Decline", decline_connection_path(connection), class: "btn btn-danger float-end btn-sm" %>
+          <%= button_to "Accept", accept_connection_path(connection), class: "btn btn-success float-end btn-sm mx-2" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Sent friend requests</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @connections_sent.each do |connection| %>
+      <tr>
+        <td><%= connection.recipient.name %></td>
+        <td>
+          <%= button_to "Cancel", cancel_connection_path(connection), class: "btn btn-primary float-end btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

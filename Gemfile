@@ -81,3 +81,5 @@ end
 gem 'pg_search'
 
 gem "devise", "~> 4.9"
+
+gem "active_link_to", "~> 1.0"
