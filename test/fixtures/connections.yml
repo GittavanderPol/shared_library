@@ -4,8 +4,19 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  sender: gitta
+  recipient: calvin
+  connection_status: requested
+# two:
+#   sender_id: 1
+#   recipient_id: 3
+#   connection_status: connected
+# three:
+#   sender_id: 2
+#   recipient_id: 1
+#   connection_status: requested
+# four:
+#   sender_id: 4
+#   recipient_id: 1
+#   connection_status: connected

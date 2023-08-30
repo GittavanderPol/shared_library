@@ -3,11 +3,19 @@
 wool:
   title: Wool
   author: Hugh Howey
+  owner: gitta
 
 oorsprong:
   title: Oorsprong
   author: Dan Brown
+  owner: gitta
 
 harry_potter:
   title: Harry Potter and the Philosopher’s Stone
   author: J.K. Rowling
+  owner: gitta
+
+refactoring:
+  title: Refactoring
+  author: Martin Fowler
+  owner: calvin

@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 gitta:
+  name: Gitta
   email: gitta@shared-library.com
   encrypted_password: <%= User.new.send(:password_digest, "password") %>
   confirmed_at: <%= Time.current - 1.hour %>
   confirmation_sent_at: <%= Time.current - 2.hours %>
 
 calvin:
+  name: Calvin
   email: calvin@shared-library.com
   encrypted_password: <%= User.new.send(:password_digest, "pommes") %>
