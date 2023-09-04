@@ -24,7 +24,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Book.count", 1) do
       post books_path, params: { book: { author: "Some author", title: "Some title" } }
     end
-    assert redirect_to books_path
+    assert_redirected_to books_path
     follow_redirect!
     new_book = Book.last
     assert_equal "Some title", new_book.title
@@ -35,15 +35,9 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference("Book.count") do
       post books_path, params: { book: { title: "Should not be valid" } }
     end
-    assert redirect_to new_book_path
+    assert_template :new
+    assert_response :unprocessable_entity
     assert_select "li", "Can't be blank"
-  end
-
-  test "shows a book" do
-    @book = books(:wool)
-    get book_path(@book)
-    assert_select "h1", "Wool"
-    assert_select "h6", "By Hugh Howey"
   end
 
   test "updates a book" do
@@ -53,12 +47,11 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_select "#book_author[value=?]", "Hugh Howey"
 
     patch book_path(@book), params: { book: { author: "Steve Jason", title: "An updated book" } }
-    assert redirect_to books_path
+    assert_redirected_to books_path
     follow_redirect!
-    get book_path(@book)
-    assert_select "h1", "An updated book"
-    assert_select "h6", "By Steve Jason"
-
+    assert_select "h1", "All books"
+    assert_includes response.body, "An updated book"
+    assert_includes response.body, "Steve Jason"
   end
 
   test "fails updating a book" do
@@ -77,7 +70,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Book.count", -1) do
       delete book_path(@book)
     end
-    assert redirect_to books_path
+    assert_redirected_to books_path
     follow_redirect!
     assert_select "tbody tr", count: @books.count
   end
