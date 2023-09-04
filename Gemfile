@@ -76,6 +76,8 @@ group :test do
   gem "webdrivers"
 
   gem 'shoulda'
+
+  gem "rails-controller-testing", "~> 1.0"
 end
 
 gem 'pg_search'
