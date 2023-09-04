@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "books#index"
-  resources :books
+  resources :books, except: [:show]
   resources :users, only: [:index, :show]
   resources :connections, except: [:edit, :update, :destroy] do
     member do # DELETE connections/1

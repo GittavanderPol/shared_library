@@ -23,10 +23,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def show
-    @book = Book.find_by!(id: params[:id], owner_id: current_user.connection_user_ids)
-  end
-
   def edit
   end
 
