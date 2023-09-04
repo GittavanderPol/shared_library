@@ -11,3 +11,32 @@ calvin:
   name: Calvin
   email: calvin@shared-library.com
   encrypted_password: <%= User.new.send(:password_digest, "pommes") %>
+
+helen:
+  name: Helen
+  email: helen@shared-library.com
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
+
+jannie:
+  name: Jannie
+  email: jannie@shared-library.com
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
+
+marit:
+  name: Marit
+  email: marit@shared-library.com
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
+
+steve:
+  name: Steve
+  email: steve@shared-library.com
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
+
+bob:
+  name: Bob
+  email: bob@shared-library.com
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
+jason:
+  name: Jason
+  email: jason@shared-library.com
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>

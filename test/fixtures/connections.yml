@@ -8,15 +8,23 @@ one:
   sender: gitta
   recipient: calvin
   connection_status: requested
-# two:
-#   sender_id: 1
-#   recipient_id: 3
-#   connection_status: connected
-# three:
-#   sender_id: 2
-#   recipient_id: 1
-#   connection_status: requested
-# four:
-#   sender_id: 4
-#   recipient_id: 1
-#   connection_status: connected
+two:
+  sender: gitta
+  recipient: helen
+  connection_status: requested
+three:
+  sender: marit
+  recipient: gitta
+  connection_status: requested
+four:
+  sender: steve
+  recipient: gitta
+  connection_status: requested
+five:
+  sender: jannie
+  recipient: gitta
+  connection_status: connected
+six:
+  sender: gitta
+  recipient: bob
+  connection_status: connected
