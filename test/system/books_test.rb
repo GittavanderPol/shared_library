@@ -12,6 +12,28 @@ class BooksTest < ApplicationSystemTestCase
     assert_selector "h1", text: "All books"
   end
 
+  test "search for Book" do
+    book = books(:harry_potter)
+    visit books_path
+    fill_in name: "query", with: "Potter"
+    click_on "Search"
+
+    assert_current_path books_path
+    assert_text book.title
+    assert_equal 1, find("#books").all("tbody tr").count
+  end
+
+  test "go to User page" do
+    book = books(:wool)
+    visit books_path
+    within_table_row_for(book) do
+      click_on book.owner.name
+    end
+
+    assert_current_path user_path(book.owner)
+    assert_selector "h1", text: book.owner.name
+  end
+
   test "should create Book" do
     visit books_path
     click_on "Add book"
@@ -34,7 +56,7 @@ class BooksTest < ApplicationSystemTestCase
 
     visit books_path
 
-    within_table_row(3) do
+    within_table_row_for(book) do
       click_on "Edit"
     end
 
@@ -51,7 +73,7 @@ class BooksTest < ApplicationSystemTestCase
     book = books(:wool)
     visit books_path
 
-    within_table_row(3) do
+    within_table_row_for(book) do
       accept_alert do
         click_on "Delete"
       end
