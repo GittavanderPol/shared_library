@@ -1,7 +1,9 @@
 require "test_helper"
 
 class ConnectionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  context "validations" do
+    should validate_presence_of(:recipient_id)
+    should validate_presence_of(:sender_id)
+    should validate_presence_of(:connection_status)
+  end
 end
