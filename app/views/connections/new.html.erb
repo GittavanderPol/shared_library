@@ -1,0 +1,14 @@
+<h1>Add a friend</h1>
+
+<% if flash[:connection_errors]&.any? %>
+  <div class="alert alert-danger my-4" role="alert">
+    <% flash[:connection_errors].each do |error| %>
+      <%= error %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: @connection do |form| %>
+  <%= render "shared/text_field", field: :recipient_email, label: "Friend's email", form: form %>
+  <%= form.submit "Add friend", class: "btn btn-primary" %>
+<% end %>

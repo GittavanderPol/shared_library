@@ -1,0 +1,14 @@
+<div class="row my-2">
+  <div class="col my-2">
+    <div class="btn-group" role="group">
+      <%= active_link_to "Friends", users_path, class: "btn btn-outline-primary" %>
+      <%= active_link_to "Friend requests", connections_path, class: "btn btn-outline-primary" %>
+    </div>
+  </div>
+
+  <div class="col-lg-6 my-2 d-grid gap-2 d-md-flex justify-content-md-end">
+    <%= link_to new_connection_path, class: "btn btn-primary" do %>
+      <i class="bi bi-plus"></i> Add friend
+    <% end %>
+  </div>
+</div>

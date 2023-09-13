@@ -1,0 +1,24 @@
+<h1>Your friends</h1>
+
+<%= render "shared/friends_header" %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col"># of Books</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user %></td>
+        <td><%= user.books.count %></td>
+        <td>
+          <%= button_to "Unfriend", unfriend_connections_path(user_id: user.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-danger float-end btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

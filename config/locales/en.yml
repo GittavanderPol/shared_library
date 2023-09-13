@@ -31,3 +31,16 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      connection:
+        recipient: "Friend"
+    errors:
+      models:
+        connection:
+          attributes:
+            recipient:
+              required: "Friend's email is incorrect or missing"
+              format: "%{message}"
+            sender_id:
+              format: "%{message}"

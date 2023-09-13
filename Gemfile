@@ -65,6 +65,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem "letter_opener_web", "~> 2.0"
 end
 
 group :test do
@@ -74,6 +76,12 @@ group :test do
   gem "webdrivers"
 
   gem 'shoulda'
+
+  gem "rails-controller-testing", "~> 1.0"
 end
 
 gem 'pg_search'
+
+gem "devise", "~> 4.9"
+
+gem "active_link_to", "~> 1.0"
