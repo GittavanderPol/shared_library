@@ -21,7 +21,6 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Invalid Email or password."
   end
 
-
   test "should sign user up" do
     visit new_user_registration_path
     within("form#new_user") do
