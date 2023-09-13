@@ -45,6 +45,7 @@ class UsersTest < ApplicationSystemTestCase
     visit confirmation_link
     assert_text "Your email address has been successfully confirmed."
   end
+
   test "visiting the index" do
     user = users(:gitta)
     sign_in user
