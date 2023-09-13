@@ -9,8 +9,12 @@ class ConnectionsTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit connections_path
+    assert_equal 2, find("#connections-received").all("tbody tr").count
+    assert_equal 2, find("#connections-sent").all("tbody tr").count
     assert_selector "h3", text: "Incoming friend requests"
     assert_selector "h3", text: "Sent friend requests"
+    assert_text "Marit"
+    assert_text "Calvin"
   end
 
   test "should create Connection" do

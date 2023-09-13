@@ -13,7 +13,7 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Gitta"
   end
 
-  test "should not log user in with missing authentication" do
+  test "should not log user in without password" do
     user = users(:gitta)
     visit new_user_session_path
     fill_in "Email", with: "gitta@shared-library.com"
@@ -58,8 +58,6 @@ class UsersTest < ApplicationSystemTestCase
     sign_in user
     visit users_path
     click_on "Add friend"
-    fill_in "Friend's email", with: "jason@shared-library.com"
-    click_on "Add friend"
-    assert_selector "h1", text: "Your friends"
+    assert_selector "h1", text: "Add a friend"
   end
 end

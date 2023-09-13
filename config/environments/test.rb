@@ -58,6 +58,7 @@ Rails.application.configure do
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
+  # This is so that the link in the email can be tested. Else the link will not have a port and will not work in a system test.
   config.action_mailer.default_url_options = { host: 'localhost' }
   Capybara.always_include_port = true
 end

@@ -9,7 +9,10 @@ class BooksTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit books_path
+    assert_equal 3, find("#books").all("tbody tr").count
     assert_selector "h1", text: "All books"
+    assert_text "Oorsprong"
+    assert_text "Dan Brown"
   end
 
   test "search for Book" do
@@ -67,6 +70,26 @@ class BooksTest < ApplicationSystemTestCase
     click_on "Update Book"
 
     assert_text "Wool2"
+  end
+
+  test "should fail updating a book" do
+    book = books(:wool)
+
+    visit books_path
+
+    within_table_row_for(book) do
+      click_on "Edit"
+    end
+
+    assert_equal find_field("Author").value, book.author
+    assert_equal find_field("Title").value, book.title
+
+    fill_in "Title", with: ""
+    click_on "Update Book"
+
+    assert_text "Can't be blank"
+    visit books_path
+    assert_text "Wool"
   end
 
   test "should delete Book" do
