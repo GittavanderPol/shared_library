@@ -35,6 +35,8 @@ en:
     attributes:
       connection:
         recipient: "Friend"
+      user:
+        whatsapp: "Whatsapp number"
     errors:
       models:
         connection:
