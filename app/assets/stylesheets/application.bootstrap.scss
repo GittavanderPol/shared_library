@@ -6,3 +6,13 @@
   --bs-btn-padding-x: 0.25rem;
   --bs-btn-font-size: 0.75rem;
 }
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: #ffffff;
+
+  &:hover {
+    background-color: darken(#25D366, 5%);
+    color: #ffffff;
+  }
+}
