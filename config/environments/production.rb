@@ -96,4 +96,5 @@ Rails.application.configure do
   config.action_mailer.postmark_settings = {
     api_token: Rails.application.credentials.postmark_api_token
   }
+  config.action_mailer.default_url_options = { host: ENV["PUBLIC_DOMAIN"], protocol: ENV["PUBLIC_PROTOCOL"] }
 end
