@@ -6,6 +6,7 @@ module UsersHelper
     phone.gsub!("-", "")
     phone.gsub!("(", "")
     phone.gsub!(")", "")
+    phone.gsub!(" ", "")
 
     while phone.starts_with?("0") do
       phone = phone[1..-1]
