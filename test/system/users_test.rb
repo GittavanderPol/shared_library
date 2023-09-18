@@ -26,6 +26,7 @@ class UsersTest < ApplicationSystemTestCase
     within("form#new_user") do
       fill_in "Name", with: "Olaf"
       fill_in "Email", with: "olaf@shared-library.com"
+      fill_in "Whatsapp", with: "+31612345678"
       fill_in "Password", with: "password"
       fill_in "Password confirmation", with: "password"
       click_on "Sign up"
@@ -43,6 +44,9 @@ class UsersTest < ApplicationSystemTestCase
 
     visit confirmation_link
     assert_text "Your email address has been successfully confirmed."
+
+    user = User.find_by(email: "olaf@shared-library.com")
+    assert_equal "+31612345678", user.whatsapp
   end
 
   test "visiting the index" do
@@ -58,5 +62,53 @@ class UsersTest < ApplicationSystemTestCase
     visit users_path
     click_on "Add friend"
     assert_selector "h1", text: "Add a friend"
+  end
+
+  test "should open whatsapp when clicking the whatsapp button" do
+    user = users(:gitta)
+    user_2 = users(:bob)
+
+    sign_in user
+    visit user_path(user_2)
+    whatsapp_link = find_link('Write Bob')
+    assert whatsapp_link.visible?
+    assert_equal "https://wa.me/31610203040", whatsapp_link[:href]
+  end
+
+  test "should not display whatsapp button for friend without whatsapp number" do
+    user = users(:gitta)
+    user_2 = users(:jannie)
+
+    sign_in user
+    visit user_path(user_2)
+    assert_no_text "Write Jannie"
+  end
+
+  test "should add whatsapp number to existing user and edit the number" do
+    user = users(:helen)
+    number = "+31674937429"
+    other_number = "+31655443322"
+    password = "password"
+
+    sign_in user
+    visit edit_user_registration_path(user)
+    fill_in "Whatsapp number", with: number
+    fill_in "Current password", with: password
+
+    wait_until_changes("user.reload.whatsapp") do
+      click_on "Update"
+    end
+
+    assert_equal number, user.whatsapp
+
+    visit edit_user_registration_path(user)
+    fill_in "Whatsapp number", with: other_number
+    fill_in "Current password", with: password
+
+    wait_until_changes("user.reload.whatsapp") do
+      click_on "Update"
+    end
+
+    assert_equal other_number, user.whatsapp
   end
 end

@@ -17,4 +17,21 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     wait = Selenium::WebDriver::Wait.new(timeout: 10)
     wait.until { !find_mail_to(email).nil? }
   end
+
+  def wait_until_changes(expression, &block)
+    exp = expression.respond_to?(:call) ? expression : -> { eval(expression.to_s, block.binding) }
+
+    before = exp.call
+
+    result = yield
+
+    wait = Selenium::WebDriver::Wait.new(timeout: 10)
+    wait.until do
+      after = exp.call
+
+      before != after
+    end
+
+    result
+  end
 end

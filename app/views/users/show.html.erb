@@ -7,6 +7,17 @@
       <% end %>
     </div>
   </div>
+<% else %>
+  <div class="row my-2">
+    <div class="col my-2 d-grid gap-2 d-md-flex justify-content-md-end">
+      <% if @user.whatsapp %>
+        <span class="align-self-center text-center text-md-start">Want to borrow one of these books?</span>
+        <%= link_to whatsapp_link(@user), class: "btn btn-whatsapp" do %>
+          <i class="bi bi-whatsapp"></i> Write <%= @user.name %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
 <table class="table table-striped">
