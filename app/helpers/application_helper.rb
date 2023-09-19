@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def connections_to_accept?
     @request_count >= 1
   end

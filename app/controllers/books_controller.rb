@@ -10,6 +10,7 @@ class BooksController < ApplicationController
       .includes(:owner)
       .order_by(@order_attribute, @order_direction)
     @books = @books.search_by_title_and_author(@query) if @query.present?
+    @pagy, @books = pagy(@books)
   end
 
   def new
