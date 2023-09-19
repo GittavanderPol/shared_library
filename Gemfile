@@ -89,5 +89,6 @@ gem "active_link_to", "~> 1.0"
 gem "postmark-rails", "~> 0.22.1"
 
 gem "phonelib", "~> 0.8.3"
+gem 'pagy', '~> 6.0'
 
 gem "appsignal", "~> 3.4", group: :production

@@ -15,9 +15,9 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", "All books"
     assert_select "table > tbody > tr", count: @books.count
 
-    @books.take(3).each_with_index do |book, index|
-      assert_select "tr:nth-child(#{index + 1}) td", book.title
-    end
+    assert_select "tr:nth-child(1) td", books(:oorsprong).title
+    assert_select "tr:nth-child(2) td", books(:wool).title
+    assert_select "tr:nth-child(3) td", books(:harry_potter).title
   end
 
   test "creates new book" do

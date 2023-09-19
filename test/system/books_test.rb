@@ -15,6 +15,24 @@ class BooksTest < ApplicationSystemTestCase
     assert_text "Dan Brown"
   end
 
+  test "should sort by author descending and then ascending" do
+    visit books_path
+    assert_selector "tbody > tr:nth-child(1) > td:nth-child(1)", text: "Dan Brown"
+    click_on "Author"
+    assert_selector "tbody > tr:nth-child(1) > td:nth-child(1)", text: "J.K. Rowling"
+    click_on "Author"
+    assert_selector "tbody > tr:nth-child(1) > td:nth-child(1)", text: "Dan Brown"
+  end
+
+  test "should sort by title ascending and the descending" do
+    visit books_path
+    assert_selector "tbody > tr:nth-child(1) > td:nth-child(2)", text: "Oorsprong"
+    click_on "Title"
+    assert_selector "tbody > tr:nth-child(1) > td:nth-child(2)", text: "Harry Potter and the Philosopher’s Stone"
+    click_on "Title"
+    assert_selector "tbody > tr:nth-child(1) > td:nth-child(2)", text: "Wool"
+  end
+
   test "search for Book" do
     book = books(:harry_potter)
     visit books_path
