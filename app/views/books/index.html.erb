@@ -20,8 +20,16 @@
 <table class="table table-striped" id="books">
   <thead>
     <tr>
-      <th scope="col">Author</th>
-      <th scope="col">Title</th>
+      <th scope="col">
+        <%= link_to books_path(order_param(:author)) do %>
+          <%= order_icon(:author) %> Author
+        <% end %>
+      </th>
+      <th scope="col">
+        <%= link_to books_path(order_param(:title)) do %>
+          <%= order_icon(:title) %> Title
+        <% end %>
+      </th>
       <th scope="col">Owner</th>
       <th scope="col"></th>
     </tr>

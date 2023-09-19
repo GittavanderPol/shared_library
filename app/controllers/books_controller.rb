@@ -4,7 +4,11 @@ class BooksController < ApplicationController
 
   def index
     @query = params[:query]
-    @books = Book.from_user_and_connections(current_user).includes(:owner).order(:title)
+    @order_attribute, @order_direction = (params[:sort].presence || "author_asc").split("_")
+
+    @books = Book.from_user_and_connections(current_user)
+      .includes(:owner)
+      .order_by(@order_attribute, @order_direction)
     @books = @books.search_by_title_and_author(@query) if @query.present?
   end
 
