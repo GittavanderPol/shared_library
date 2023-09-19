@@ -38,6 +38,6 @@ class User < ApplicationRecord
   end
 
   def self.with_book_count
-    joins(:books).select("users.*", "COUNT(books.id) AS book_count").group("users.id")
+    left_outer_joins(:books).select("users.*", "COUNT(books.id) AS book_count").group("users.id")
   end
 end
