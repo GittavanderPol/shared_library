@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name, presence: true
+  validates :whatsapp, phone: { possible: true, allow_blank: true }
 
   has_many :books, foreign_key: :owner_id, dependent: :destroy
 
@@ -38,6 +39,6 @@ class User < ApplicationRecord
   end
 
   def self.with_book_count
-    joins(:books).select("users.*", "COUNT(books.id) AS book_count").group("users.id")
+    left_outer_joins(:books).select("users.*", "COUNT(books.id) AS book_count").group("users.id")
   end
 end
