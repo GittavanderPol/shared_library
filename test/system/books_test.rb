@@ -19,9 +19,12 @@ class BooksTest < ApplicationSystemTestCase
     book = books(:harry_potter)
     visit books_path
     fill_in name: "query", with: "Potter"
-    click_on "Search"
 
-    assert_current_path books_path
+    wait_until_changes("current_url") do
+      click_on "Search"
+    end
+
+    assert_current_path books_path + "?query=Potter&commit=Search"
     assert_text book.title
     assert_equal 1, find("#books").all("tbody tr").count
   end
