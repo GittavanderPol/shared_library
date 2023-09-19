@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name, presence: true
+  validates :whatsapp, phone: { possible: true, allow_blank: true }
 
   has_many :books, foreign_key: :owner_id, dependent: :destroy
 

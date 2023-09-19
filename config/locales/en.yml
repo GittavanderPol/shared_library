@@ -46,3 +46,7 @@ en:
               format: "%{message}"
             sender_id:
               format: "%{message}"
+        user:
+          attributes:
+            whatsapp:
+              invalid: "is not a valid international phone number"

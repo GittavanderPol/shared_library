@@ -49,6 +49,19 @@ class UsersTest < ApplicationSystemTestCase
     assert_equal "+31612345678", user.whatsapp
   end
 
+  test "should not sign user up with invalid international whatsapp number" do
+    visit new_user_registration_path
+    within("form#new_user") do
+      fill_in "Name", with: "Olaf"
+      fill_in "Email", with: "olaf@shared-library.com"
+      fill_in "Whatsapp", with: "0612345678"
+      fill_in "Password", with: "password"
+      fill_in "Password confirmation", with: "password"
+      click_on "Sign up"
+      assert_text "Whatsapp number is not a valid international phone number"
+    end
+  end
+
   test "visiting the index" do
     user = users(:gitta)
     sign_in user
