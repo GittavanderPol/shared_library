@@ -275,7 +275,7 @@ DEPENDENCIES
   letter_opener_web (~> 2.0)
   pg (~> 1.1)
   pg_search
-  phonelib
+  phonelib (~> 0.8.3)
   postmark-rails (~> 0.22.1)
   puma (~> 5.0)
   rails (~> 7.0.6)
