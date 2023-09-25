@@ -1,24 +1,31 @@
-# README
+# SharedLibrary
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> A Rails app to borrow books from your friends.
 
-Things you may want to cover:
+With this application you can create an account and document all the (physical) books you have and are willing to lend out. You can add friends and see their books as well. On interest of a book, you can contact a friend with the whastapp button on their page to ask to borrow it. You can sort the list of books (yours and your friends' books) by author or by title.
 
-* Ruby version
+I built this as a learning project. I wanted to learn how to make a rails application using mvc, Bootstrap, Ruby, different kinds of tests and apply different kinds of gems. I combined this with my passion for reading, making it an interesting learning project to work on.
 
-* System dependencies
+## Dependencies
 
-* Configuration
+The app has the following dependencies:
+- Ruby 3.2.1 (via `.ruby-version`)
+- Nodejs 18
+- Yarn 1.22
+- Postgres 15
 
-* Database creation
+## Setup
 
-* Database initialization
+```bash
+# install ruby dependencies & setup the database
+bin/rails db:setup
 
-* How to run the test suite
+# install js dependencies
+yarn
 
-* Services (job queues, cache servers, search engines, etc.)
+# start the app
+bin/dev
+```
 
-* Deployment instructions
-
-* ...
+## Contributions
+You can contribute to this project by submitting a pull request. Please don't forget to add unit and system tests.
