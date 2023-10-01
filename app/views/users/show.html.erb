@@ -34,7 +34,7 @@
         <td><%= book.title %></td>
         <% if book.owner_is?(current_user) %>
           <td>
-            <%= link_to book_path(book), data: { "turbo-method": :delete }, class: "btn btn-outline-danger btn-sm float-end" do %>
+            <%= link_to book_path(book), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm float-end" do %>
               <i class="bi bi-trash3"></i> Delete
             <% end %>
             <%= link_to edit_book_path(book), class: "btn btn-outline-primary btn-sm float-end me-1" do %>
